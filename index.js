@@ -124,10 +124,10 @@ console.log(personFour.play());
   TASK 4
 
   In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
-  4. 
+  1. Window object binding is when 'this' points to everything. The window object.
+  2. Implicit binding is when 'this' points to the left of the period when the function is called.
+  3. Explicit binding is when we set 'this' to a certain value using call or apply
+  4. New binding is when a new object is constructed and then 'this' points to it.
 */
 
 
