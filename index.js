@@ -39,9 +39,29 @@ Airplane.prototype.land = function () {
         + It should return a string with `name` and `age`. Example: "Mary, 50"
 */
 
-function Person() {
-
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+  this.stomach = [];
 }
+
+Person.prototype.eat = function(edible){
+  if(this.stomach.length < 10){
+    this.stomach.push(edible);
+  }
+}
+
+Person.prototype.poop = function(){
+  this.stomach = [];
+}
+
+Person.prototype.toString = function(){
+  return `${this.name}, ${this.age}`;
+}
+
+const personOne = new Person('Scott', 25);
+const personTwo = new Person('Kylee', 22);
+const personThree = new Person('Becca', 18);
 
 /*
   TASK 2
@@ -57,9 +77,22 @@ function Person() {
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
 
-function Car() {
-
+function Car(model, milesPerGallon) {
+  this.model = model;
+  this.milesPerGallon = milesPerGallon;
+  this.tank = 0;
+  this.odometer = 0;
 }
+
+Car.prototype.fill = function(gallons){
+  this.tank = this.tank + gallons;
+}
+
+const carOne = new Car('avalon', 30);
+
+console.log(carOne);
+
+carOne.fill(10);
 
 /*
   TASK 3
@@ -68,18 +101,33 @@ function Car() {
     - Besides the methods on Person.prototype, babies have the ability to `.play()`:
         + Should return a string "Playing with x", x being the favorite toy.
 */
-function Baby() {
-
+function Baby(name, age, favoriteToy) {
+  Person.call(this, name, age);
+  this.favoriteToy = favoriteToy;
 }
+
+Baby.prototype = Object.create(Person.prototype);
+
+Baby.prototype.play = function(){
+  return `Playing with ${this.favoriteToy}`;
+}
+
+const personFour = new Baby({
+  name: 'Elliot',
+  age: 1,
+  favoriteToy: 'Drum set',
+});
+
+console.log(personFour.play());
 
 /* 
   TASK 4
 
   In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
-  4. 
+  1. Window object binding is when 'this' points to everything. The window object.
+  2. Implicit binding is when 'this' points to the left of the period when the function is called.
+  3. Explicit binding is when we set 'this' to a certain value using call or apply
+  4. New binding is when a new object is constructed and then 'this' points to it.
 */
 
 
